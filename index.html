@@ -4,168 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invitación - 60 Años</title>
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        body {
-            background-color: #fcf9f2;
-            font-family: 'Montserrat', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-        }
-
-        /* Contenedor principal que imita la tarjeta */
-        .invitacion-card {
-            background-color: #fdfbf7;
-            border: 2px solid #d4af37; /* Marco Dorado */
-            padding: 40px;
-            max-width: 600px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            position: relative;
-            border-radius: 8px;
-        }
-
-        .header-invitacion {
-            font-family: 'Cinzel', serif;
-            letter-spacing: 4px;
-            color: #111;
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-
-        .Gran-Numero {
-            font-family: 'Cinzel', serif;
-            font-size: 6rem;
-            font-weight: 400;
-            line-height: 1;
-            margin: 0;
-            color: #111;
-        }
-
-        .Anos {
-            font-family: 'Alex Brush', cursive;
-            font-size: 3.5rem;
-            margin-top: -20px;
-            color: #111;
-        }
-
-        .Subtitulo {
-            font-family: 'Cinzel', serif;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            color: #666;
-            border-bottom: 1px solid #d4af37;
-            padding-bottom: 10px;
-            display: inline-block;
-            width: 80%;
-        }
-
-        .Nombres {
-            font-family: 'Alex Brush', cursive;
-            font-size: 2.5rem;
-            margin: 25px 0;
-            color: #111;
-        }
-
-        /* Sección Dinámica */
-        .datos-dinamicos {
-            margin: 30px 0;
-            font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
-            color: #333;
-        }
-
-        .campo-dinamico {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: #111;
-            border-bottom: 1px dashed #d4af37;
-            display: inline-block;
-            min-width: 150px;
-            padding: 2px 10px;
-        }
-
-        .Fecha {
-            font-family: 'Cinzel', serif;
-            font-size: 1rem;
-            letter-spacing: 2px;
-            margin-top: 30px;
-        }
-
-        .Fecha span {
-            color: #d4af37;
-            font-size: 1.4rem;
-            font-weight: bold;
-        }
-
-        /* Botón de acción dinámica */
-        .btn-confirmar {
-            margin-top: 25px;
-            background-color: #111;
-            color: #fff;
-            border: 1px solid #d4af37;
-            padding: 12px 30px;
-            font-family: 'Cinzel', serif;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .btn-confirmar:hover {
-            background-color: #d4af37;
-            color: #111;
-        }
+        body { background-color: #f5f2eb; font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
+        .invitacion-container { position: relative; max-width: 650px; width: 100%; padding-top: 20px; }
+        .invitacion-card { background-color: #fdfbf7; border: 1px solid #d4af37; padding: 45px 50px; text-align: center; box-sizing: border-box; outline: 3px solid #fdfbf7; outline-offset: -10px; box-shadow: inset 0 0 0 1px #d4af37, 0 15px 35px rgba(0,0,0,0.08); border-radius: 15px; }
+        .ribbon-decor { position: absolute; top: -15px; right: -15px; font-size: 5rem; line-height: 1; z-index: 10; user-select: none; }
+        .header-invitacion { font-family: 'Cinzel', serif; letter-spacing: 5px; color: #111; font-size: 1.1rem; }
+        .heart-separator { color: #111; font-size: 0.8rem; margin: 5px 0; }
+        .heart-gold { color: #d4af37; font-size: 0.9rem; margin: 8px 0; }
+        .Gran-Numero { font-family: 'Cinzel', serif; font-size: 7.5rem; font-weight: 400; line-height: 0.85; margin: 10px 0 0 0; color: #111; letter-spacing: -2px; }
+        .Anos { font-family: 'Alex Brush', cursive; font-size: 4.5rem; margin-top: -25px; margin-bottom: 10px; color: #111; }
+        .Subtitulo { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 3px; color: #111; border-bottom: 1px solid #d4af37; padding-bottom: 8px; display: inline-block; width: 65%; margin-bottom: 15px; }
+        .Nombres { font-family: 'Alex Brush', cursive; font-size: 2.8rem; margin: 20px 0; color: #111; font-weight: 500; }
+        .datos-dinamicos { margin: 25px auto; max-width: 85%; text-align: left; font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 1px; color: #111; }
+        .linea-campo { display: flex; align-items: baseline; margin-bottom: 15px; }
+        .etiqueta { white-space: nowrap; margin-right: 10px; }
+        .campo-dinamico { font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1.1rem; color: #222; border-bottom: 1px solid #111; flex-grow: 1; padding-left: 10px; padding-bottom: 2px; text-transform: uppercase; }
+        .Fecha { font-family: 'Cinzel', serif; font-size: 1.1rem; letter-spacing: 3px; margin-top: 25px; color: #111; }
+        .Fecha span { color: #d4af37; font-size: 1.6rem; font-weight: 600; margin: 0 4px; }
+        .Pase-Personal { font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 4px; margin: 10px 0 20px 0; display: flex; justify-content: center; align-items: center; gap: 10px; }
+        
+        /* QR Estilos */
+        .qr-seccion { margin-top: 20px; display: flex; flex-direction: column; align-items: center; }
+        .qr-instruccion { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 2px; color: #666; margin-bottom: 12px; text-transform: uppercase; }
+        .qr-contenedor { padding: 8px; background: white; border: 1px solid #d4af37; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: inline-block; line-height: 0; }
+        .qr-contenedor img { width: 130px; height: 130px; }
     </style>
 </head>
 <body>
 
-    <div class="invitacion-card">
-        <div class="header-invitacion">★ INVITACIÓN ★</div>
-        
-        <div class="Gran-Numero">60</div>
-        <div class="Anos">años</div>
-        <div class="Subtitulo">DE UNA VIDA EXTRAORDINARIA</div>
-        
-        <div class="Nombres">Juana María Dueñas y José Delgado</div>
-        
-        <div class="datos-dinamicos">
-            <p>FAMILIA: <span id="txt-familia" class="campo-dinamico">Cargando...</span></p>
-            <p>CANTIDAD DE PERSONAS: <span id="txt-pases" class="campo-dinamico">-</span></p>
+    <div class="invitacion-container">
+        <div class="ribbon-decor">🎀</div> 
+        <div class="invitacion-card">
+            <div class="header-invitacion">INVITACIÓN</div>
+            <div class="heart-separator">♥</div>
+            
+            <div class="Gran-Numero">60</div>
+            <div class="Anos">años</div>
+            <div class="Subtitulo">DE UNA VIDA EXTRAORDINARIA</div>
+            
+            <div class="heart-gold">♦</div>
+            <div class="Nombres">Juana María Dueñas y José Delgado</div>
+            
+            <div class="datos-dinamicos">
+                <div class="linea-campo">
+                    <span class="etiqueta">FAMILIA:</span>
+                    <span id="txt-familia" class="campo-dinamico">Cargando...</span>
+                </div>
+                <div class="linea-campo">
+                    <span class="etiqueta">CANTIDAD DE PERSONAS:</span>
+                    <span id="txt-pases" class="campo-dinamico">-</span>
+                </div>
+            </div>
+
+            <div class="heart-gold">♦</div>
+            <div class="Fecha">SÁBADO <span>18</span> JULIO 2026</div>
+            
+            <div class="Pase-Personal">
+                <span style="color: #d4af37;">♥</span> PASE DIGITAL DE ACCESO <span style="color: #d4af37;">♥</span>
+            </div>
+
+            <div class="qr-seccion">
+                <div class="qr-instruccion">Presentar QR en la entrada</div>
+                <div class="qr-contenedor">
+                    <img id="img-qr" src="" alt="Código QR de acceso">
+                </div>
+            </div>
         </div>
-
-        <div class="Fecha">SÁBADO <span>18</span> JULIO 2026</div>
-        <p style="font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 3px;">♥ PASE PERSONAL ♥</p>
-
-        <button class="btn-confirmar" onclick="confirmarAsistencia()">Confirmar Asistencia vía WhatsApp</button>
     </div>
 
     <script>
-        // FUNCIÓN DINÁMICA: Lee los datos directamente desde el enlace (URL)
-        // Ejemplo de uso: tuweb.com/?familia=Perez+Lopez&pases=4
         const urlParams = new URLSearchParams(window.location.search);
-        
-        // Obtiene el nombre y los pases de la URL, si no existen pone un texto por defecto
         const apellidoFamilia = urlParams.get('familia') || 'Invitado Especial';
-        const numeroPases = urlParams.get('pases') || '2';
+        const numeroPases = urlParams.get('pases') || '1';
 
-        // Reemplaza el texto en la página web
         document.getElementById('txt-familia').innerText = apellidoFamilia;
         document.getElementById('txt-pases').innerText = numeroPases;
 
-        // Función para enviar confirmación automática por WhatsApp
-        function confirmarAsistencia() {
-            const telefono = "1234567890"; // <- Reemplaza con tu número real de WhatsApp
-            const mensaje = `¡Hola! La Familia ${apellidoFamilia} confirma su asistencia para ${numeroPases} personas al 60 aniversario.`;
-            const urlWhatsapp = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
-            window.open(urlWhatsapp, '_blank');
-        }
+        // --- CONFIGURACIÓN DEL LINK DEL QR ---
+        // IMPORTANTE: Reemplaza "tuweb.com" por el enlace real donde vayas a subir tu página
+        const urlBaseValidador = "https://tuweb.com/validador.html"; 
+        
+        // El QR ahora enviará al validador llevando los datos del invitado
+        const urlDestinoQR = `${urlBaseValidador}?familia=${encodeURIComponent(apellidoFamilia)}&pases=${numeroPases}`;
+        
+        // Generamos el QR de forma dinámica
+        const qrApiUrl = `https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=${encodeURIComponent(urlDestinoQR)}&choe=UTF-8`;
+        document.getElementById('img-qr').src = qrApiUrl;
     </script>
 </body>
 </html>
