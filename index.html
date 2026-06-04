@@ -16,19 +16,32 @@
             min-height: 100vh;
             margin: 0;
             padding: 20px;
+            overflow-x: hidden;
         }
 
-        /* Contenedor principal que imita la tarjeta */
         .invitacion-card {
             background-color: #fdfbf7;
-            border: 2px solid #d4af37; /* Marco Dorado */
-            padding: 40px;
+            border: 2px solid #d4af37;
+            padding: 50px 40px;
             max-width: 600px;
             width: 100%;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
             position: relative;
             border-radius: 8px;
+            /* Animación de entrada de toda la tarjeta */
+            animation: aparecer 1.5s ease-out;
+        }
+
+        /* --- EL MOÑO --- */
+        .mono-decorativo {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 120px; /* Ajusta este tamaño si lo ves muy grande o pequeño */
+            z-index: 10;
+            /* Animación de flotar muy suave */
+            animation: flotar 4s ease-in-out infinite;
         }
 
         .header-invitacion {
@@ -39,13 +52,22 @@
             margin-bottom: 5px;
         }
 
+        /* Estrellas animadas */
+        .estrella {
+            display: inline-block;
+            color: #d4af37;
+            animation: brillar 3s infinite alternate;
+        }
+
         .Gran-Numero {
             font-family: 'Cinzel', serif;
             font-size: 6rem;
             font-weight: 400;
             line-height: 1;
-            margin: 0;
+            margin: 10px 0 0 0;
             color: #111;
+            /* Animación del 60 palpitando lentamente */
+            animation: latido 3s ease-in-out infinite;
         }
 
         .Anos {
@@ -73,7 +95,6 @@
             color: #111;
         }
 
-        /* Sección Dinámica */
         .datos-dinamicos {
             margin: 30px 0;
             font-family: 'Cinzel', serif;
@@ -105,31 +126,66 @@
             font-weight: bold;
         }
 
-        /* Botón de acción dinámica */
+        .corazon {
+            display: inline-block;
+            color: #d4af37;
+            animation: latido 2s infinite;
+        }
+
         .btn-confirmar {
-            margin-top: 25px;
+            margin-top: 35px;
             background-color: #111;
             color: #fff;
             border: 1px solid #d4af37;
-            padding: 12px 30px;
+            padding: 15px 30px;
             font-family: 'Cinzel', serif;
             letter-spacing: 2px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .btn-confirmar:hover {
             background-color: #d4af37;
             color: #111;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* --- ANIMACIONES ELEGANTES (KEYFRAMES) --- */
+        
+        @keyframes latido {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.04); } /* Crece un 4% muy sutilmente */
+            100% { transform: scale(1); }
+        }
+
+        @keyframes brillar {
+            0% { opacity: 0.4; text-shadow: 0 0 0px #d4af37; }
+            100% { opacity: 1; text-shadow: 0 0 10px #d4af37; }
+        }
+
+        @keyframes flotar {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes aparecer {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
     <div class="invitacion-card">
-        <div class="header-invitacion">★ INVITACIÓN ★</div>
+        <img src="mono.png" class="mono-decorativo" alt="Moño Elegante">
+
+        <div class="header-invitacion"><span class="estrella">★</span> INVITACIÓN <span class="estrella">★</span></div>
         
         <div class="Gran-Numero">60</div>
+        
         <div class="Anos">años</div>
         <div class="Subtitulo">DE UNA VIDA EXTRAORDINARIA</div>
         
@@ -141,27 +197,24 @@
         </div>
 
         <div class="Fecha">SÁBADO <span>18</span> JULIO 2026</div>
-        <p style="font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 3px;">♥ PASE PERSONAL ♥</p>
+        <p style="font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 3px;">
+            <span class="corazon">♥</span> PASE PERSONAL <span class="corazon">♥</span>
+        </p>
 
         <button class="btn-confirmar" onclick="confirmarAsistencia()">Confirmar Asistencia vía WhatsApp</button>
     </div>
 
     <script>
-        // FUNCIÓN DINÁMICA: Lee los datos directamente desde el enlace (URL)
-        // Ejemplo de uso: tuweb.com/?familia=Perez+Lopez&pases=4
         const urlParams = new URLSearchParams(window.location.search);
-        
-        // Obtiene el nombre y los pases de la URL, si no existen pone un texto por defecto
         const apellidoFamilia = urlParams.get('familia') || 'Invitado Especial';
         const numeroPases = urlParams.get('pases') || '2';
 
-        // Reemplaza el texto en la página web
         document.getElementById('txt-familia').innerText = apellidoFamilia;
         document.getElementById('txt-pases').innerText = numeroPases;
 
-        // Función para enviar confirmación automática por WhatsApp
         function confirmarAsistencia() {
-            const telefono = "528442958983"; // <- Reemplaza con tu número real de WhatsApp
+            // ¡NO OLVIDES CAMBIAR ESTE NÚMERO POR EL TUYO!
+            const telefono = "528442958983"; 
             const mensaje = `¡Hola! La Familia ${apellidoFamilia} confirma su asistencia para ${numeroPases} personas al 60 aniversario.`;
             const urlWhatsapp = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
             window.open(urlWhatsapp, '_blank');
