@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación - 60 Años</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #fcf9f2;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Contenedor principal que imita la tarjeta */
+        .invitacion-card {
+            background-color: #fdfbf7;
+            border: 2px solid #d4af37; /* Marco Dorado */
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            position: relative;
+            border-radius: 8px;
+        }
+
+        .header-invitacion {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 4px;
+            color: #111;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .Gran-Numero {
+            font-family: 'Cinzel', serif;
+            font-size: 6rem;
+            font-weight: 400;
+            line-height: 1;
+            margin: 0;
+            color: #111;
+        }
+
+        .Anos {
+            font-family: 'Alex Brush', cursive;
+            font-size: 3.5rem;
+            margin-top: -20px;
+            color: #111;
+        }
+
+        .Subtitulo {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: #666;
+            border-bottom: 1px solid #d4af37;
+            padding-bottom: 10px;
+            display: inline-block;
+            width: 80%;
+        }
+
+        .Nombres {
+            font-family: 'Alex Brush', cursive;
+            font-size: 2.5rem;
+            margin: 25px 0;
+            color: #111;
+        }
+
+        /* Sección Dinámica */
+        .datos-dinamicos {
+            margin: 30px 0;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .campo-dinamico {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #111;
+            border-bottom: 1px dashed #d4af37;
+            display: inline-block;
+            min-width: 150px;
+            padding: 2px 10px;
+        }
+
+        .Fecha {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            margin-top: 30px;
+        }
+
+        .Fecha span {
+            color: #d4af37;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        /* Botón de acción dinámica */
+        .btn-confirmar {
+            margin-top: 25px;
+            background-color: #111;
+            color: #fff;
+            border: 1px solid #d4af37;
+            padding: 12px 30px;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-confirmar:hover {
+            background-color: #d4af37;
+            color: #111;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="invitacion-card">
+        <div class="header-invitacion">★ INVITACIÓN ★</div>
+        
+        <div class="Gran-Numero">60</div>
+        <div class="Anos">años</div>
+        <div class="Subtitulo">DE UNA VIDA EXTRAORDINARIA</div>
+        
+        <div class="Nombres">Juana María Dueñas y José Delgado</div>
+        
+        <div class="datos-dinamicos">
+            <p>FAMILIA: <span id="txt-familia" class="campo-dinamico">Cargando...</span></p>
+            <p>CANTIDAD DE PERSONAS: <span id="txt-pases" class="campo-dinamico">-</span></p>
+        </div>
+
+        <div class="Fecha">SÁBADO <span>18</span> JULIO 2026</div>
+        <p style="font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 3px;">♥ PASE PERSONAL ♥</p>
+
+        <button class="btn-confirmar" onclick="confirmarAsistencia()">Confirmar Asistencia vía WhatsApp</button>
+    </div>
+
+    <script>
+        // FUNCIÓN DINÁMICA: Lee los datos directamente desde el enlace (URL)
+        // Ejemplo de uso: tuweb.com/?familia=Perez+Lopez&pases=4
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // Obtiene el nombre y los pases de la URL, si no existen pone un texto por defecto
+        const apellidoFamilia = urlParams.get('familia') || 'Invitado Especial';
+        const numeroPases = urlParams.get('pases') || '2';
+
+        // Reemplaza el texto en la página web
+        document.getElementById('txt-familia').innerText = apellidoFamilia;
+        document.getElementById('txt-pases').innerText = numeroPases;
+
+        // Función para enviar confirmación automática por WhatsApp
+        function confirmarAsistencia() {
+            const telefono = "528442958983"; // <- Reemplaza con tu número real de WhatsApp
+            const mensaje = `¡Hola! La Familia ${apellidoFamilia} confirma su asistencia para ${numeroPases} personas al 60 aniversario.`;
+            const urlWhatsapp = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+            window.open(urlWhatsapp, '_blank');
+        }
+    </script>
+</body>
+</html>
