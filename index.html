@@ -30,13 +30,26 @@
         .qr-instruccion { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 2px; color: #666; margin-bottom: 12px; text-transform: uppercase; }
         .qr-contenedor { padding: 12px; background: white; border: 1px solid #d4af37; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: inline-block; line-height: 0; }
         .qr-contenedor img { width: 140px; height: 140px; display: block; }
+
+        /* ESTILOS DEL MODO VALIDADOR */
+        .modo-validador { background-color: #111 !important; color: white !important; border: 2px solid #d4af37 !important; outline: none !important; box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important; }
+        .status-badge { font-size: 4rem; margin-bottom: 10px; }
+        .status-title { font-family: 'Cinzel', serif; font-size: 1.6rem; letter-spacing: 2px; margin-bottom: 25px; font-weight: bold; }
+        .confirmado { color: #2ecc71; }
+        .no-confirmado { color: #e74c3c; }
+        .info-card { background-color: #222; border-radius: 8px; padding: 20px; margin-top: 20px; border-left: 4px solid #d4af37; text-align: left; }
+        .info-label { font-size: 0.75rem; color: #888; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+        .info-value { font-size: 1.2rem; font-weight: bold; color: #fdfbf7; margin-bottom: 15px; font-family: 'Montserrat', sans-serif; }
+        .password-input { background: #222; border: 1px solid #d4af37; padding: 10px; color: white; font-size: 1rem; border-radius: 4px; width: 80%; text-align: center; margin-bottom: 15px; }
+        .btn-auth { background: #d4af37; border: none; color: black; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
     </style>
 </head>
 <body>
 
     <div class="invitacion-container">
-        <div class="ribbon-decor">🎀</div> 
-        <div class="invitacion-card">
+        <div class="invitacion-card" id="vista-dinamica">
+            
+            <div class="ribbon-decor">🎀</div> 
             <div class="header-invitacion">INVITACIÓN</div>
             <div class="heart-separator">♥</div>
             
@@ -71,32 +84,93 @@
                     <img id="img-qr" src="" alt="Código QR de acceso">
                 </div>
             </div>
+
         </div>
     </div>
 
     <script>
-        // 1. Capturar los parámetros de la URL enviados a cada invitado
+        // CONFIGURACIÓN CENTRAL
+        const CLAVE_SECRETA = "aniversario60"; 
+        const usuarioValido = "secundariamatematicas01-star";
+        const urlBasePropia = "https://secundariamatematicas01-star.github.io/index.html";
+
         const urlParams = new URLSearchParams(window.location.search);
+        const modoLector = urlParams.get('modo'); // Detecta si es el escaner de la puerta
+        const userParam = urlParams.get('user');
         const apellidoFamilia = urlParams.get('familia') || 'Invitado Especial';
         const numeroPases = urlParams.get('pases') || '1';
 
-        // 2. Renderizar los textos personalizados en la pantalla
-        document.getElementById('txt-familia').innerText = apellidoFamilia;
-        document.getElementById('txt-pases').innerText = numeroPases;
+        const vistaCard = document.getElementById('vista-dinamica');
 
-        // 3. Definir la URL de tu validador alojado en GitHub Pages
-        const urlBaseValidador = "https://secundariamatematicas01-star.github.io/validador.html";
-        const miUsuario = "secundariamatematicas01-star";
+        // ¿SITUACIÓN A: SE ESTÁ ESCANEANDO EN LA PUERTA?
+        if (modoLector === 'validar') {
+            // Cambiar diseño visual a Modo Oscuro de Validador
+            vistaCard.className = "invitacion-card modo-validador";
+            
+            let dispositivoAutorizado = localStorage.getItem("staff_autorizado");
 
-        // 4. Construir la URL final personalizada que leerá el receptor en la entrada
-        const urlDestinoQR = `${urlBaseValidador}?user=${encodeURIComponent(miUsuario)}&familia=${encodeURIComponent(apellidoFamilia)}&pases=${numeroPases}`;
-        
-        // 5. GENERAR EL QR CON LA NUEVA API ACTIVA (api.qrserver.com)
-        // Esto incrusta los datos específicos de este enlace dentro del código QR de forma única
-        const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(urlDestinoQR)}&charset-source=UTF-8`;
-        
-        // Asignar el código QR resultante al contenedor
-        document.getElementById('img-qr').src = qrApiUrl;
+            if (dispositivoAutorizado !== "true") {
+                // Bloqueado: Pedir contraseña del staff de la puerta
+                vistaCard.innerHTML = `
+                    <div class="status-badge" style="color: #e67e22;">🔒</div>
+                    <div class="status-title" style="color: #e67e22;">DISPOSITIVO NO AUTORIZADO</div>
+                    <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 20px;">Este escáner solo puede ser operado por el personal del evento.</p>
+                    <input type="password" id="input-pass" class="password-input" placeholder="Contraseña de Staff">
+                    <br>
+                    <button class="btn-auth" onclick="autorizarCelular()">Autorizar Celular</button>
+                `;
+            } else {
+                // Autorizado: Validar los datos del QR escaneado
+                if (userParam === usuarioValido) {
+                    const cantidadPases = parseInt(numeroPases, 10) || 0;
+                    vistaCard.innerHTML = `
+                        <div class="status-badge confirmado">✓</div>
+                        <div class="status-title confirmado">ACCESO CONFIRMADO</div>
+                        <div class="info-card">
+                            <div class="info-label">Invitado / Familia</div>
+                            <div class="info-value">${apellidoFamilia}</div>
+                            <div class="info-label">Pases Autorizados</div>
+                            <div class="info-value">${cantidadPases} ${cantidadPases === 1 ? 'Persona' : 'Personas'}</div>
+                        </div>
+                        <div style="font-size:0.65rem; color:#444; margin-top:30px;">ID Evento: secundariamatematicas01-star</div>
+                    `;
+                } else {
+                    vistaCard.innerHTML = `
+                        <div class="status-badge no-confirmado">✕</div>
+                        <div class="status-title no-confirmado">ACCESO DENEGADO</div>
+                        <div class="info-card">
+                            <div class="info-label">Error</div>
+                            <div class="info-value">Código Inválido o Falsificado</div>
+                        </div>
+                    `;
+                }
+            }
+        } 
+        // ¿SITUACIÓN B: EL INVITADO ABRE SU INVITACIÓN NORMAL?
+        else {
+            // Pintar datos del invitado en la tarjeta
+            document.getElementById('txt-familia').innerText = apellidoFamilia;
+            document.getElementById('txt-pases').innerText = numeroPases;
+
+            // Construir la URL que leerá la cámara (apunta a este mismo archivo pero activa el validador)
+            const urlDestinoQR = `${urlBasePropia}?modo=validar&user=${encodeURIComponent(usuarioValido)}&familia=${encodeURIComponent(apellidoFamilia)}&pases=${numeroPases}`;
+            
+            // Generar imagen del QR
+            const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(urlDestinoQR)}&charset-source=UTF-8`;
+            document.getElementById('img-qr').src = qrApiUrl;
+        }
+
+        // Función para recordar el teléfono de la puerta
+        window.autorizarCelular = function() {
+            const passIntroducida = document.getElementById('input-pass').value;
+            if (passIntroducida === CLAVE_SECRETA) {
+                localStorage.setItem("staff_autorizado", "true");
+                alert("¡Celular autorizado correctamente para la puerta!");
+                window.location.reload();
+            } else {
+                alert("Contraseña incorrecta.");
+            }
+        }
     </script>
 </body>
 </html>
