@@ -75,21 +75,23 @@
     </div>
 
     <script>
+        // 1. Obtener parámetros de la URL
         const urlParams = new URLSearchParams(window.location.search);
         const apellidoFamilia = urlParams.get('familia') || 'Invitado Especial';
         const numeroPases = urlParams.get('pases') || '1';
-        // CONFIGURACIÓN DEL LINK DEL QR (Actualizado con tu usuario)
-        const urlBaseValidador = "https://secundariamatematicas01-star.github.io/validador.html";
+
+        // 2. Pintar los textos en pantalla
         document.getElementById('txt-familia').innerText = apellidoFamilia;
         document.getElementById('txt-pases').innerText = numeroPases;
 
-        // IMPORTANTE: Cambia "tuweb.com" por el dominio donde subas tus archivos
-        const urlBaseValidador = "https://tuweb.com/validador.html"; 
+        // 3. Configuración del validador y generación del código QR
+        const urlBaseValidador = "https://secundariamatematicas01-star.github.io/validador.html";
         const miUsuario = "secundariamatematicas01-star";
 
-        // El QR ahora incluye tu firma de usuario encriptada sutilmente en la URL
+        // El QR incluye tus variables de manera limpia
         const urlDestinoQR = `${urlBaseValidador}?user=${encodeURIComponent(miUsuario)}&familia=${encodeURIComponent(apellidoFamilia)}&pases=${numeroPases}`;
         
+        // Generar la URL de la API de Google Charts para pintar el código QR
         const qrApiUrl = `https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=${encodeURIComponent(urlDestinoQR)}&choe=UTF-8`;
         document.getElementById('img-qr').src = qrApiUrl;
     </script>
