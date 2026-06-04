@@ -78,7 +78,8 @@
         const urlParams = new URLSearchParams(window.location.search);
         const apellidoFamilia = urlParams.get('familia') || 'Invitado Especial';
         const numeroPases = urlParams.get('pases') || '1';
-
+        // CONFIGURACIÓN DEL LINK DEL QR (Actualizado con tu usuario)
+        const urlBaseValidador = "https://secundariamatematicas01-star.github.io/validador.html";
         document.getElementById('txt-familia').innerText = apellidoFamilia;
         document.getElementById('txt-pases').innerText = numeroPases;
 
