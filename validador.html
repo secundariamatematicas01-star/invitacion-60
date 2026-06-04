@@ -60,7 +60,10 @@
             textEl.className = "status-title confirmado";
             
             familiaEl.innerText = familia;
-            pasesEl.innerText = `${pases} ${pases === '1' ? 'Persona' : 'Personas'}`;
+            
+            // CORRECCIÓN AQUÍ: Usamos parseInt para asegurar una comparación numérica limpia
+            const cantidadPases = parseInt(pases, 10) || 0;
+            pasesEl.innerText = `${cantidadPases} ${cantidadPases === 1 ? 'Persona' : 'Personas'}`;
         } else {
             // Si intentan usar un QR falso o de otro evento
             iconEl.innerText = "✕";
