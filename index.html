@@ -3,173 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invitación - 60 Años</title>
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    
+    <title>Invitación Digital</title>
     <style>
-        body { background-color: #f5f2eb; font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
-        .invitacion-container { position: relative; max-width: 650px; width: 100%; padding-top: 20px; }
-        .invitacion-card { background-color: #fdfbf7; border: 1px solid #d4af37; padding: 45px 50px; text-align: center; box-sizing: border-box; outline: 3px solid #fdfbf7; outline-offset: -10px; box-shadow: inset 0 0 0 1px #d4af37, 0 15px 35px rgba(0,0,0,0.08); border-radius: 15px; }
-        .ribbon-decor { position: absolute; top: -15px; right: -15px; font-size: 5rem; line-height: 1; z-index: 10; user-select: none; }
-        .header-invitacion { font-family: 'Cinzel', serif; letter-spacing: 5px; color: #111; font-size: 1.1rem; }
-        .heart-separator { color: #111; font-size: 0.8rem; margin: 5px 0; }
-        .heart-gold { color: #d4af37; font-size: 0.9rem; margin: 8px 0; }
-        .Gran-Numero { font-family: 'Cinzel', serif; font-size: 7.5rem; font-weight: 400; line-height: 0.85; margin: 10px 0 0 0; color: #111; letter-spacing: -2px; }
-        .Anos { font-family: 'Alex Brush', cursive; font-size: 4.5rem; margin-top: -25px; margin-bottom: 10px; color: #111; }
-        .Subtitulo { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 3px; color: #111; border-bottom: 1px solid #d4af37; padding-bottom: 8px; display: inline-block; width: 65%; margin-bottom: 15px; }
-        .Nombres { font-family: 'Alex Brush', cursive; font-size: 2.8rem; margin: 20px 0; color: #111; font-weight: 500; }
-        .datos-dinamicos { margin: 25px auto; max-width: 85%; text-align: left; font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 1px; color: #111; }
-        .linea-campo { display: flex; align-items: baseline; margin-bottom: 15px; }
-        .etiqueta { white-space: nowrap; margin-right: 10px; }
-        .campo-dinamico { font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1.1rem; color: #222; border-bottom: 1px solid #111; flex-grow: 1; padding-left: 10px; padding-bottom: 2px; text-transform: uppercase; }
-        .Fecha { font-family: 'Cinzel', serif; font-size: 1.1rem; letter-spacing: 3px; margin-top: 25px; color: #111; }
-        .Fecha span { color: #d4af37; font-size: 1.6rem; font-weight: 600; margin: 0 4px; }
-        .Pase-Personal { font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 4px; margin: 10px 0 20px 0; display: flex; justify-content: center; align-items: center; gap: 10px; }
-        
-        .qr-seccion { margin-top: 20px; display: flex; flex-direction: column; align-items: center; }
-        .qr-instruccion { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 2px; color: #666; margin-bottom: 12px; text-transform: uppercase; }
-        .qr-contenedor { padding: 12px; background: white; border: 1px solid #d4af37; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: inline-block; line-height: 0; }
-        .qr-contenedor img { width: 140px; height: 140px; display: block; }
-
-        /* ESTILOS DEL MODO VALIDADOR */
-        .modo-validador { background-color: #111 !important; color: white !important; border: 2px solid #d4af37 !important; outline: none !important; box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important; }
-        .status-badge { font-size: 4rem; margin-bottom: 10px; }
-        .status-title { font-family: 'Cinzel', serif; font-size: 1.6rem; letter-spacing: 2px; margin-bottom: 25px; font-weight: bold; }
-        .confirmado { color: #2ecc71; }
-        .no-confirmado { color: #e74c3c; }
-        .info-card { background-color: #222; border-radius: 8px; padding: 20px; margin-top: 20px; border-left: 4px solid #d4af37; text-align: left; }
-        .info-label { font-size: 0.75rem; color: #888; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
-        .info-value { font-size: 1.2rem; font-weight: bold; color: #fdfbf7; margin-bottom: 15px; font-family: 'Montserrat', sans-serif; }
-        .password-input { background: #222; border: 1px solid #d4af37; padding: 10px; color: white; font-size: 1rem; border-radius: 4px; width: 80%; text-align: center; margin-bottom: 15px; }
-        .btn-auth { background: #d4af37; border: none; color: black; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
+        body { background-color: #f5f2eb; font-family: 'Arial', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .card { background: white; padding: 40px; border: 2px solid #d4af37; text-align: center; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-width: 400px; }
+        h1 { font-family: serif; color: #111; }
+        .btn-validar { 
+            display: inline-block; 
+            background-color: #111; 
+            color: #d4af37; 
+            padding: 15px 30px; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            font-weight: bold; 
+            margin-top: 20px;
+            border: 2px solid #d4af37;
+            transition: 0.3s;
+        }
+        .btn-validar:hover { background-color: #d4af37; color: #111; }
+        .vista-validador { display: none; }
     </style>
 </head>
 <body>
 
-    <div class="invitacion-container">
-        <div class="invitacion-card" id="vista-dinamica">
-            
-            <div class="ribbon-decor">🎀</div> 
-            <div class="header-invitacion">INVITACIÓN</div>
-            <div class="heart-separator">♥</div>
-            
-            <div class="Gran-Numero">60</div>
-            <div class="Anos">años</div>
-            <div class="Subtitulo">DE UNA VIDA EXTRAORDINARIA</div>
-            
-            <div class="heart-gold">♦</div>
-            <div class="Nombres">Juana María Dueñas y José Delgado</div>
-            
-            <div class="datos-dinamicos">
-                <div class="linea-campo">
-                    <span class="etiqueta">FAMILIA:</span>
-                    <span id="txt-familia" class="campo-dinamico">Cargando...</span>
-                </div>
-                <div class="linea-campo">
-                    <span class="etiqueta">CANTIDAD DE PERSONAS:</span>
-                    <span id="txt-pases" class="campo-dinamico">-</span>
-                </div>
-            </div>
+    <div id="vista-invitacion" class="card">
+        <h1>60 Años</h1>
+        <p id="txt-familia">Cargando...</p>
+        <p>Pases: <span id="txt-pases">-</span></p>
+        <hr>
+        <p>Pulsa el botón para validar tu acceso:</p>
+        <a href="#" id="btn-qr" class="btn-validar">VALIDAR PASE</a>
+    </div>
 
-            <div class="heart-gold">♦</div>
-            <div class="Fecha">SÁBADO <span>18</span> JULIO 2026</div>
-            
-            <div class="Pase-Personal">
-                <span style="color: #d4af37;">♥</span> PASE DIGITAL DE ACCESO <span style="color: #d4af37;">♥</span>
-            </div>
-
-            <div class="qr-seccion">
-                <div class="qr-instruccion">Presentar QR en la entrada</div>
-                <div class="qr-contenedor">
-                    <img id="img-qr" src="" alt="Código QR de acceso">
-                </div>
-            </div>
-
-        </div>
+    <div id="vista-validador" class="card vista-validador">
+        <h2 id="status-title">VERIFICANDO...</h2>
+        <div id="status-desc">-</div>
+        <br>
+        <button onclick="location.href='index.html'" class="btn-validar">VOLVER</button>
     </div>
 
     <script>
-        // CONFIGURACIÓN CENTRAL
-        const CLAVE_SECRETA = "aniversario60"; 
-        const usuarioValido = "secundariamatematicas01-star";
-        const urlBasePropia = "https://secundariamatematicas01-star.github.io/index.html";
-
         const urlParams = new URLSearchParams(window.location.search);
-        const modoLector = urlParams.get('modo'); // Detecta si es el escaner de la puerta
-        const userParam = urlParams.get('user');
-        const apellidoFamilia = urlParams.get('familia') || 'Invitado Especial';
-        const numeroPases = urlParams.get('pases') || '1';
+        const familia = urlParams.get('familia') || 'Invitado';
+        const pases = urlParams.get('pases') || '1';
+        const modo = urlParams.get('modo');
 
-        const vistaCard = document.getElementById('vista-dinamica');
-
-        // ¿SITUACIÓN A: SE ESTÁ ESCANEANDO EN LA PUERTA?
-        if (modoLector === 'validar') {
-            // Cambiar diseño visual a Modo Oscuro de Validador
-            vistaCard.className = "invitacion-card modo-validador";
+        if (modo === 'validar') {
+            // MOSTRAR VISTA VALIDADOR
+            document.getElementById('vista-invitacion').style.display = 'none';
+            document.getElementById('vista-validador').style.display = 'block';
             
-            let dispositivoAutorizado = localStorage.getItem("staff_autorizado");
-
-            if (dispositivoAutorizado !== "true") {
-                // Bloqueado: Pedir contraseña del staff de la puerta
-                vistaCard.innerHTML = `
-                    <div class="status-badge" style="color: #e67e22;">🔒</div>
-                    <div class="status-title" style="color: #e67e22;">DISPOSITIVO NO AUTORIZADO</div>
-                    <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 20px;">Este escáner solo puede ser operado por el personal del evento.</p>
-                    <input type="password" id="input-pass" class="password-input" placeholder="Contraseña de Staff">
-                    <br>
-                    <button class="btn-auth" onclick="autorizarCelular()">Autorizar Celular</button>
-                `;
-            } else {
-                // Autorizado: Validar los datos del QR escaneado
-                if (userParam === usuarioValido) {
-                    const cantidadPases = parseInt(numeroPases, 10) || 0;
-                    vistaCard.innerHTML = `
-                        <div class="status-badge confirmado">✓</div>
-                        <div class="status-title confirmado">ACCESO CONFIRMADO</div>
-                        <div class="info-card">
-                            <div class="info-label">Invitado / Familia</div>
-                            <div class="info-value">${apellidoFamilia}</div>
-                            <div class="info-label">Pases Autorizados</div>
-                            <div class="info-value">${cantidadPases} ${cantidadPases === 1 ? 'Persona' : 'Personas'}</div>
-                        </div>
-                        <div style="font-size:0.65rem; color:#444; margin-top:30px;">ID Evento: secundariamatematicas01-star</div>
-                    `;
-                } else {
-                    vistaCard.innerHTML = `
-                        <div class="status-badge no-confirmado">✕</div>
-                        <div class="status-title no-confirmado">ACCESO DENEGADO</div>
-                        <div class="info-card">
-                            <div class="info-label">Error</div>
-                            <div class="info-value">Código Inválido o Falsificado</div>
-                        </div>
-                    `;
-                }
-            }
-        } 
-        // ¿SITUACIÓN B: EL INVITADO ABRE SU INVITACIÓN NORMAL?
-        else {
-            // Pintar datos del invitado en la tarjeta
-            document.getElementById('txt-familia').innerText = apellidoFamilia;
-            document.getElementById('txt-pases').innerText = numeroPases;
-
-            // Construir la URL que leerá la cámara (apunta a este mismo archivo pero activa el validador)
-            const urlDestinoQR = `${urlBasePropia}?modo=validar&user=${encodeURIComponent(usuarioValido)}&familia=${encodeURIComponent(apellidoFamilia)}&pases=${numeroPases}`;
-            
-            // Generar imagen del QR
-            const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(urlDestinoQR)}&charset-source=UTF-8`;
-            document.getElementById('img-qr').src = qrApiUrl;
-        }
-
-        // Función para recordar el teléfono de la puerta
-        window.autorizarCelular = function() {
-            const passIntroducida = document.getElementById('input-pass').value;
-            if (passIntroducida === CLAVE_SECRETA) {
-                localStorage.setItem("staff_autorizado", "true");
-                alert("¡Celular autorizado correctamente para la puerta!");
-                window.location.reload();
-            } else {
-                alert("Contraseña incorrecta.");
-            }
+            document.getElementById('status-title').innerText = "ACCESO CONFIRMADO";
+            document.getElementById('status-title').style.color = "#2ecc71";
+            document.getElementById('status-desc').innerText = `Familia: ${familia}\nPases: ${pases}`;
+        } else {
+            // MOSTRAR VISTA INVITACIÓN
+            document.getElementById('txt-familia').innerText = familia;
+            document.getElementById('txt-pases').innerText = pases;
+            // El link del botón apunta a esta misma página pero en modo validar
+            document.getElementById('btn-qr').href = `index.html?modo=validar&familia=${encodeURIComponent(familia)}&pases=${pases}`;
         }
     </script>
 </body>
