@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Control de Acceso - 60 Años</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1 class="title">
+            CONTROL DE ACCESO
+        </h1>
+
+        <p style="margin-bottom:20px;">
+            Escanea el código QR del invitado
+        </p>
+
+        <div id="reader"></div>
+
+        <div id="resultado"></div>
+
+    </div>
+
+</div>
+
+<script>
+
+const APPS_SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbzstcCipeFoug-3ilDYmU_gK2cP36K8SQwAz8ZhU1acGsMqMRRLv-Vd6uEYjCGIbD9P/exec";
+
+const resultado =
+document.getElementById("resultado");
+
+function validarQR(decodedText){
+
+    html5QrcodeScanner.clear();
+
+    const folio = decodedText.trim();
+
+    resultado.innerHTML = `
+        <div class="result">
+            Consultando folio ${folio}...
+        </div>
+    `;
+
+    fetch(
+        APPS_SCRIPT_URL +
+        "?folio=" +
+        encodeURIComponent(folio)
+    )
+    .then(response => response.json())
+    .then(data => {
+
+        if(data.valido){
+
+            resultado.innerHTML = `
+
+            <div class="result success">
+
+                <h2>✓ ACCESO AUTORIZADO</h2>
+
+                <div class="info">
+
+                    <p><b>Familia:</b>
+                    ${data.familia}</p>
+
+                    <p><b>Personas:</b>
+                    ${data.personas}</p>
+
+                    <p><b>Hora:</b>
+                    ${data.hora}</p>
+
+                </div>
+
+                <button
+                    onclick="location.reload()"
+                    class="cerrar-btn">
+
+                    Escanear otro pase
+
+                </button>
+
+            </div>
+            `;
+
+        }else{
+
+            resultado.innerHTML = `
+
+            <div class="result error">
+
+                <h2>⚠ ${data.mensaje}</h2>
+
+                <div class="info">
+
+                    <p><b>Familia:</b>
+                    ${data.familia || '-'}</p>
+
+                    <p><b>Hora:</b>
+                    ${data.hora || '-'}</p>
+
+                </div>
+
+                <button
+                    onclick="location.reload()"
+                    class="cerrar-btn">
+
+                    Intentar nuevamente
+
+                </button>
+
+            </div>
+            `;
+        }
+
+    })
+    .catch(error => {
+
+        resultado.innerHTML = `
+
+        <div class="result error">
+
+            <h2>Error de conexión</h2>
+
+            <div class="info">
+
+                <p>
+                    No fue posible comunicarse con Google Sheets.
+                </p>
+
+                <p>
+                    ${error}
+                </p>
+
+            </div>
+
+        </div>
+        `;
+
+    });
+
+}
+
+const html5QrcodeScanner =
+new Html5QrcodeScanner(
+    "reader",
+    {
+        fps:10,
+        qrbox:250
+    }
+);
+
+html5QrcodeScanner.render(validarQR);
+
+</script>
+
+</body>
+</html>
