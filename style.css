@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap');
+
+:root{
+    --gold:#c9a227;
+    --gold-light:#e8d48c;
+    --cream:#faf7f0;
+    --black:#111;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background:
+    radial-gradient(circle at top left,#ffffff,#f7f2e8);
+    font-family:'Montserrat',sans-serif;
+}
+
+.card{
+    position:relative;
+    width:100%;
+    max-width:750px;
+    background:var(--cream);
+    border-radius:25px;
+    overflow:hidden;
+    padding:60px 40px;
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.15);
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    inset:15px;
+    border:2px solid var(--gold);
+    border-radius:18px;
+}
+
+.card::after{
+    content:"";
+    position:absolute;
+    inset:28px;
+    border:1px solid var(--gold-light);
+    border-radius:12px;
+}
+
+.corner{
+    position:absolute;
+    width:70px;
+    height:70px;
+    border-color:var(--gold);
+}
+
+.tl{
+    top:18px;
+    left:18px;
+    border-top:3px solid;
+    border-left:3px solid;
+}
+
+.tr{
+    top:18px;
+    right:18px;
+    border-top:3px solid;
+    border-right:3px solid;
+}
+
+.bl{
+    bottom:18px;
+    left:18px;
+    border-bottom:3px solid;
+    border-left:3px solid;
+}
+
+.br{
+    bottom:18px;
+    right:18px;
+    border-bottom:3px solid;
+    border-right:3px solid;
+}
+
+.header{
+    text-align:center;
+    position:relative;
+    z-index:2;
+}
+
+.inv{
+    font-family:'Cinzel',serif;
+    letter-spacing:6px;
+    color:#222;
+    font-size:1.2rem;
+}
+
+.numero{
+    font-family:'Cinzel',serif;
+    font-size:8rem;
+    line-height:.8;
+    color:#111;
+}
+
+.anios{
+    font-family:'Alex Brush',cursive;
+    font-size:5rem;
+    margin-top:-20px;
+}
+
+.subtitulo{
+    font-family:'Cinzel',serif;
+    margin-top:10px;
+    font-size:1rem;
+    letter-spacing:2px;
+}
+
+.nombres-anfitriones{
+    margin-top:25px;
+    font-family:'Alex Brush',cursive;
+    font-size:3rem;
+    text-align:center;
+}
+
+.linea{
+    width:250px;
+    height:2px;
+    background:var(--gold);
+    margin:15px auto;
+}
+
+.info{
+    margin-top:40px;
+    text-align:center;
+}
+
+.familia{
+    font-family:'Cinzel',serif;
+    font-size:2rem;
+    color:#111;
+}
+
+.detalle{
+    margin-top:10px;
+    font-size:1.1rem;
+}
+
+.folio{
+    margin-top:12px;
+    color:var(--gold);
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.qr-box{
+    margin:35px auto 0;
+    width:240px;
+    background:#fff;
+    padding:18px;
+    border-radius:20px;
+    border:3px solid var(--gold);
+    box-shadow:0 0 30px rgba(201,162,39,.25);
+}
+
+.qr-box img{
+    width:100%;
+    display:block;
+}
+
+.qr-text{
+    margin-top:18px;
+    text-align:center;
+    color:#8a6d1f;
+    font-family:'Cinzel',serif;
+    letter-spacing:2px;
+}
+
+.footer{
+    margin-top:25px;
+    text-align:center;
+    font-style:italic;
+    color:#444;
+}
+
+.star{
+    position:absolute;
+    color:var(--gold);
+    font-size:24px;
+}
+
+.s1{top:90px;left:90px;}
+.s2{top:160px;right:100px;}
+.s3{bottom:160px;left:90px;}
+.s4{bottom:120px;right:120px;}
+
+@media(max-width:768px){
+
+    .card{
+        padding:40px 20px;
+    }
+
+    .numero{
+        font-size:5.5rem;
+    }
+
+    .anios{
+        font-size:3.5rem;
+    }
+
+    .nombres-anfitriones{
+        font-size:2.2rem;
+    }
+
+    .familia{
+        font-size:1.4rem;
+    }
+
+    .qr-box{
+        width:180px;
+    }
+}
