@@ -1,68 +1,236 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invitación Digital</title>
-    <style>
-        body { background-color: #f5f2eb; font-family: 'Arial', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .card { background: white; padding: 40px; border: 2px solid #d4af37; text-align: center; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-width: 400px; }
-        h1 { font-family: serif; color: #111; }
-        .btn-validar { 
-            display: inline-block; 
-            background-color: #111; 
-            color: #d4af37; 
-            padding: 15px 30px; 
-            text-decoration: none; 
-            border-radius: 50px; 
-            font-weight: bold; 
-            margin-top: 20px;
-            border: 2px solid #d4af37;
-            transition: 0.3s;
+    <title>Invitación - 60 Años</title>
+
+```
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+    body{
+        background-color:#f5f2eb;
+        font-family:'Montserrat',sans-serif;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        min-height:100vh;
+        margin:0;
+        padding:20px;
+    }
+
+    .invitacion-container{
+        position:relative;
+        max-width:650px;
+        width:100%;
+    }
+
+    .invitacion-card{
+        background-color:#fdfbf7;
+        border:1px solid #d4af37;
+        padding:45px 50px;
+        text-align:center;
+        box-shadow:
+            inset 0 0 0 1px #d4af37,
+            0 15px 35px rgba(0,0,0,.08);
+        border-radius:15px;
+    }
+
+    .header-invitacion{
+        font-family:'Cinzel',serif;
+        letter-spacing:5px;
+        color:#111;
+        font-size:1.1rem;
+    }
+
+    .Gran-Numero{
+        font-family:'Cinzel',serif;
+        font-size:7.5rem;
+        line-height:.85;
+        margin:10px 0;
+        color:#111;
+    }
+
+    .Anos{
+        font-family:'Alex Brush',cursive;
+        font-size:4.5rem;
+        margin-top:-25px;
+        margin-bottom:10px;
+        color:#111;
+    }
+
+    .Nombres{
+        font-family:'Alex Brush',cursive;
+        font-size:2.8rem;
+        margin:20px 0;
+        color:#111;
+    }
+
+    .qr-link{
+        display:inline-block;
+        margin-top:25px;
+        text-decoration:none;
+        transition:.3s;
+        cursor:default;
+    }
+
+    #qr-validacion{
+        width:180px;
+        height:180px;
+        background:white;
+        border:4px solid #d4af37;
+        border-radius:15px;
+        padding:10px;
+        box-shadow:0 0 25px rgba(212,175,55,.25);
+        animation:flotar 3s ease-in-out infinite;
+    }
+
+    @keyframes flotar{
+        0%,100%{
+            transform:translateY(0);
         }
-        .btn-validar:hover { background-color: #d4af37; color: #111; }
-        .vista-validador { display: none; }
-    </style>
+        50%{
+            transform:translateY(-8px);
+        }
+    }
+
+    .texto-qr{
+        margin-top:15px;
+        color:#8a6d1f;
+        font-size:.9rem;
+        letter-spacing:2px;
+        font-family:'Cinzel',serif;
+    }
+
+    .texto-qr-secundario{
+        margin-top:8px;
+        color:#666;
+        font-size:.85rem;
+    }
+
+    .folio{
+        margin-top:10px;
+        color:#8a6d1f;
+        font-weight:bold;
+        font-size:1rem;
+    }
+
+    @media(max-width:600px){
+
+        .invitacion-card{
+            padding:30px 20px;
+        }
+
+        .Gran-Numero{
+            font-size:5.5rem;
+        }
+
+        .Anos{
+            font-size:3.5rem;
+        }
+
+        .Nombres{
+            font-size:2.1rem;
+        }
+
+        #qr-validacion{
+            width:150px;
+            height:150px;
+        }
+    }
+
+</style>
+```
+
 </head>
+
 <body>
 
-    <div id="vista-invitacion" class="card">
-        <h1>60 Años</h1>
-        <p id="txt-familia">Cargando...</p>
-        <p>Pases: <span id="txt-pases">-</span></p>
-        <hr>
-        <p>Pulsa el botón para validar tu acceso:</p>
-        <a href="#" id="btn-qr" class="btn-validar">VALIDAR PASE</a>
+<div class="invitacion-container">
+
+```
+<div class="invitacion-card">
+
+    <div class="header-invitacion">
+        INVITACIÓN
     </div>
 
-    <div id="vista-validador" class="card vista-validador">
-        <h2 id="status-title">VERIFICANDO...</h2>
-        <div id="status-desc">-</div>
-        <br>
-        <button onclick="location.href='index.html'" class="btn-validar">VOLVER</button>
+    <div class="Gran-Numero">
+        60
     </div>
 
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const familia = urlParams.get('familia') || 'Invitado';
-        const pases = urlParams.get('pases') || '1';
-        const modo = urlParams.get('modo');
+    <div class="Anos">
+        años
+    </div>
 
-        if (modo === 'validar') {
-            // MOSTRAR VISTA VALIDADOR
-            document.getElementById('vista-invitacion').style.display = 'none';
-            document.getElementById('vista-validador').style.display = 'block';
-            
-            document.getElementById('status-title').innerText = "ACCESO CONFIRMADO";
-            document.getElementById('status-title').style.color = "#2ecc71";
-            document.getElementById('status-desc').innerText = `Familia: ${familia}\nPases: ${pases}`;
-        } else {
-            // MOSTRAR VISTA INVITACIÓN
-            document.getElementById('txt-familia').innerText = familia;
-            document.getElementById('txt-pases').innerText = pases;
-            // El link del botón apunta a esta misma página pero en modo validar
-            document.getElementById('btn-qr').href = `index.html?modo=validar&familia=${encodeURIComponent(familia)}&pases=${pases}`;
-        }
-    </script>
+    <div class="Nombres" id="txt-familia">
+        Cargando...
+    </div>
+
+    <p>
+        Pases asignados:
+        <strong id="txt-pases">-</strong>
+    </p>
+
+    <p class="folio">
+        Folio:
+        <strong id="txt-folio">-</strong>
+    </p>
+
+    <div style="margin-top:30px;">
+
+        <a class="qr-link">
+
+            <img
+                id="qr-validacion"
+                src=""
+                alt="QR de acceso">
+
+        </a>
+
+        <div class="texto-qr">
+            PRESENTAR ESTE QR EN EL ACCESO
+        </div>
+
+        <div class="texto-qr-secundario">
+            Mostrar este código al personal del evento
+        </div>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+<script>
+
+const urlParams = new URLSearchParams(window.location.search);
+
+const familia =
+urlParams.get('familia') || 'Invitado Especial';
+
+const pases =
+urlParams.get('pases') || '1';
+
+const folio =
+urlParams.get('folio') || 'SIN-FOLIO';
+
+document.getElementById('txt-familia').innerText =
+familia;
+
+document.getElementById('txt-pases').innerText =
+pases;
+
+document.getElementById('txt-folio').innerText =
+folio;
+
+document.getElementById('qr-validacion').src =
+`https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(folio)}`;
+
+</script>
+
 </body>
 </html>
