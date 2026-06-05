@@ -1,235 +1,168 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invitación - 60 Años</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>60 Años de Amor</title>
 
-```
-<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-    body{
-        background-color:#f5f2eb;
-        font-family:'Montserrat',sans-serif;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        min-height:100vh;
-        margin:0;
-        padding:20px;
-    }
+:root{
+    --gold:#c9a227;
+    --gold-light:#e8d48c;
+    --cream:#faf7f0;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background:radial-gradient(circle at top left,#ffffff,#f7f2e8);
+    font-family:'Montserrat',sans-serif;
+}
+.card{
+    position:relative;
+    width:100%;
+    max-width:760px;
+    background:var(--cream);
+    border-radius:25px;
+    padding:60px 35px;
+    box-shadow:0 20px 60px rgba(0,0,0,.15);
+    overflow:hidden;
+}
+.card:before{
+    content:"";
+    position:absolute;
+    inset:15px;
+    border:2px solid var(--gold);
+    border-radius:18px;
+}
+.card:after{
+    content:"";
+    position:absolute;
+    inset:28px;
+    border:1px solid var(--gold-light);
+    border-radius:12px;
+}
+.corner{position:absolute;width:70px;height:70px;border-color:var(--gold);z-index:2}
+.tl{top:18px;left:18px;border-top:3px solid;border-left:3px solid}
+.tr{top:18px;right:18px;border-top:3px solid;border-right:3px solid}
+.bl{bottom:18px;left:18px;border-bottom:3px solid;border-left:3px solid}
+.br{bottom:18px;right:18px;border-bottom:3px solid;border-right:3px solid}
+.star{position:absolute;color:var(--gold);font-size:24px}
+.s1{top:90px;left:90px}
+.s2{top:160px;right:100px}
+.s3{bottom:160px;left:90px}
+.s4{bottom:120px;right:120px}
 
-    .invitacion-container{
-        position:relative;
-        max-width:650px;
-        width:100%;
-    }
-
-    .invitacion-card{
-        background-color:#fdfbf7;
-        border:1px solid #d4af37;
-        padding:45px 50px;
-        text-align:center;
-        box-shadow:
-            inset 0 0 0 1px #d4af37,
-            0 15px 35px rgba(0,0,0,.08);
-        border-radius:15px;
-    }
-
-    .header-invitacion{
-        font-family:'Cinzel',serif;
-        letter-spacing:5px;
-        color:#111;
-        font-size:1.1rem;
-    }
-
-    .Gran-Numero{
-        font-family:'Cinzel',serif;
-        font-size:7.5rem;
-        line-height:.85;
-        margin:10px 0;
-        color:#111;
-    }
-
-    .Anos{
-        font-family:'Alex Brush',cursive;
-        font-size:4.5rem;
-        margin-top:-25px;
-        margin-bottom:10px;
-        color:#111;
-    }
-
-    .Nombres{
-        font-family:'Alex Brush',cursive;
-        font-size:2.8rem;
-        margin:20px 0;
-        color:#111;
-    }
-
-    .qr-link{
-        display:inline-block;
-        margin-top:25px;
-        text-decoration:none;
-        transition:.3s;
-        cursor:default;
-    }
-
-    #qr-validacion{
-        width:180px;
-        height:180px;
-        background:white;
-        border:4px solid #d4af37;
-        border-radius:15px;
-        padding:10px;
-        box-shadow:0 0 25px rgba(212,175,55,.25);
-        animation:flotar 3s ease-in-out infinite;
-    }
-
-    @keyframes flotar{
-        0%,100%{
-            transform:translateY(0);
-        }
-        50%{
-            transform:translateY(-8px);
-        }
-    }
-
-    .texto-qr{
-        margin-top:15px;
-        color:#8a6d1f;
-        font-size:.9rem;
-        letter-spacing:2px;
-        font-family:'Cinzel',serif;
-    }
-
-    .texto-qr-secundario{
-        margin-top:8px;
-        color:#666;
-        font-size:.85rem;
-    }
-
-    .folio{
-        margin-top:10px;
-        color:#8a6d1f;
-        font-weight:bold;
-        font-size:1rem;
-    }
-
-    @media(max-width:600px){
-
-        .invitacion-card{
-            padding:30px 20px;
-        }
-
-        .Gran-Numero{
-            font-size:5.5rem;
-        }
-
-        .Anos{
-            font-size:3.5rem;
-        }
-
-        .Nombres{
-            font-size:2.1rem;
-        }
-
-        #qr-validacion{
-            width:150px;
-            height:150px;
-        }
-    }
-
+.header{text-align:center;position:relative;z-index:3}
+.inv{font-family:'Cinzel',serif;letter-spacing:6px;font-size:1.1rem}
+.numero{font-family:'Cinzel',serif;font-size:8rem;line-height:.8}
+.anios{font-family:'Alex Brush',cursive;font-size:5rem;margin-top:-20px}
+.nombres-anfitriones{font-family:'Alex Brush',cursive;font-size:3rem;margin-top:20px}
+.linea{width:240px;height:2px;background:var(--gold);margin:15px auto}
+.info{text-align:center;margin-top:35px}
+.familia{font-family:'Cinzel',serif;font-size:2rem}
+.detalle{margin-top:10px;font-size:1.1rem}
+.folio{margin-top:12px;color:var(--gold);font-weight:bold;letter-spacing:2px}
+.qr-box{
+    width:240px;
+    margin:35px auto 0;
+    background:#fff;
+    border:3px solid var(--gold);
+    border-radius:20px;
+    padding:18px;
+    box-shadow:0 0 30px rgba(201,162,39,.25);
+}
+.qr-box img{width:100%;display:block}
+.qr-text{text-align:center;margin-top:18px;color:#8a6d1f;font-family:'Cinzel',serif}
+.footer{text-align:center;margin-top:25px;color:#444}
+.fecha{text-align:center;margin-top:10px;font-weight:600}
+@media(max-width:768px){
+.numero{font-size:5.5rem}
+.anios{font-size:3.5rem}
+.nombres-anfitriones{font-size:2.2rem}
+.familia{font-size:1.4rem}
+.qr-box{width:180px}
+.card{padding:40px 20px}
+}
 </style>
-```
-
 </head>
-
 <body>
 
-<div class="invitacion-container">
+<div class="card">
 
-```
-<div class="invitacion-card">
+<div class="corner tl"></div>
+<div class="corner tr"></div>
+<div class="corner bl"></div>
+<div class="corner br"></div>
 
-    <div class="header-invitacion">
-        INVITACIÓN
-    </div>
+<div class="star s1">✦</div>
+<div class="star s2">✦</div>
+<div class="star s3">✦</div>
+<div class="star s4">✦</div>
 
-    <div class="Gran-Numero">
-        60
-    </div>
+<div class="header">
+<div class="inv">INVITACIÓN</div>
+<div class="numero">60</div>
+<div class="anios">años</div>
 
-    <div class="Anos">
-        años
-    </div>
-
-    <div class="Nombres" id="txt-familia">
-        Cargando...
-    </div>
-
-    <p>
-        Pases asignados:
-        <strong id="txt-pases">-</strong>
-    </p>
-
-    <p class="folio">
-        Folio:
-        <strong id="txt-folio">-</strong>
-    </p>
-
-    <div style="margin-top:30px;">
-
-        <a class="qr-link">
-
-            <img
-                id="qr-validacion"
-                src=""
-                alt="QR de acceso">
-
-        </a>
-
-        <div class="texto-qr">
-            PRESENTAR ESTE QR EN EL ACCESO
-        </div>
-
-        <div class="texto-qr-secundario">
-            Mostrar este código al personal del evento
-        </div>
-
-    </div>
-
+<div class="nombres-anfitriones">
+Juana María Dueñas<br>
+y<br>
+José Delgado
 </div>
-```
+
+<div class="linea"></div>
+</div>
+
+<div class="info">
+<div class="familia" id="txt-familia">Cargando...</div>
+
+<div class="detalle">
+Pases asignados:
+<strong id="txt-pases">-</strong>
+</div>
+
+<div class="folio">
+Folio: <span id="txt-folio">-</span>
+</div>
+
+<div class="qr-box">
+<img id="qr-validacion" src="" alt="QR">
+</div>
+
+<div class="qr-text">
+PRESENTAR ESTE CÓDIGO EN EL ACCESO
+</div>
+
+<div class="fecha">
+Celebración de 60 Años
+</div>
+
+<div class="footer">
+Gracias por acompañarnos en esta celebración tan especial
+</div>
+</div>
 
 </div>
 
 <script>
-
 const urlParams = new URLSearchParams(window.location.search);
 
-const familia =
-urlParams.get('familia') || 'Invitado Especial';
+const familia = urlParams.get('familia') || 'Invitado Especial';
+const pases = urlParams.get('pases') || '1';
+const folio = urlParams.get('folio') || 'SIN-FOLIO';
 
-const pases =
-urlParams.get('pases') || '1';
-
-const folio =
-urlParams.get('folio') || 'SIN-FOLIO';
-
-document.getElementById('txt-familia').innerText =
-familia;
-
-document.getElementById('txt-pases').innerText =
-pases;
-
-document.getElementById('txt-folio').innerText =
-folio;
+document.getElementById('txt-familia').innerText = familia;
+document.getElementById('txt-pases').innerText = pases;
+document.getElementById('txt-folio').innerText = folio;
 
 document.getElementById('qr-validacion').src =
 `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(folio)}`;
-
 </script>
 
 </body>
